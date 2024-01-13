@@ -23,6 +23,8 @@ import Loader from '@/components/global/Loader';
 // import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { MailCheck } from 'lucide-react';
 import { FormSchema } from '@/lib/types';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { actionSignUpUser } from '@/lib/server-actions/auth-actions';
 // import { actionSignUpUser } from '@/lib/server-actions/auth-actions';
 
 const SignUpFormSchema = z
@@ -71,13 +73,13 @@ const Signup = () => {
 
     const isLoading = form.formState.isSubmitting;
     const onSubmit = async ({ email, password }: z.infer<typeof FormSchema>) => {
-        // const { error } = await actionSignUpUser({ email, password });
-        // if (error) {
-        //     setSubmitError(error.message);
-        //     form.reset();
-        //     return;
-        // }
-        // setConfirmation(true);
+        const { error } = await actionSignUpUser({ email, password });
+        if (error) {
+            setSubmitError(error.message);
+            form.reset();
+            return;
+        }
+        setConfirmation(true);
     };
 
     return (
@@ -87,24 +89,14 @@ const Signup = () => {
                     if (submitError) setSubmitError('');
                 }}
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="w-full sm:justify-center sm:w-[400px]
-        space-y-6 flex
-        flex-col
+                className="w-full sm:justify-center sm:w-[400px] space-y-6 flex flex-col
         "
             >
                 <Link
                     href="/"
-                    className="
-          w-full
-          flex
-          justify-left
-          items-center"
+                    className=" w-full flex justify-left items-center"
                 >
-                    <Image
-                        src={Logo}
-                        alt="cypress Logo"
-                        width={50}
-                        height={50}
+                    <Image src={Logo} alt="cypress Logo" width={50} height={50}
                     />
                     <span
                         className="font-semibold
@@ -192,7 +184,7 @@ const Signup = () => {
                         Login
                     </Link>
                 </span>
-                {/* {(confirmation || codeExchangeError) && (
+                {(confirmation || codeExchangeError) && (
                     <>
                         <Alert className={confirmationAndErrorStyles}>
                             {!codeExchangeError && <MailCheck className="h-4 w-4" />}
@@ -204,7 +196,7 @@ const Signup = () => {
                             </AlertDescription>
                         </Alert>
                     </>
-                )} */}
+                )}
             </form>
         </Form>
     );
