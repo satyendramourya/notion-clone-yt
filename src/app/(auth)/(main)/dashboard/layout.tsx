@@ -1,14 +1,14 @@
-import React from 'react'
+
 
 interface LayoutProps {
-    childern: React.ReactNode;
+    children: React.ReactNode;
     params: any;
 }
 
-const layout: React.FC<LayoutProps>  = ({childern, params}) => {
+const layout: React.FC<LayoutProps> = ({children, params}) => {
   return (
       <main className="flex over-hidden h-screen">
-            {childern}
+          {children}
     </main>
   )
 }
