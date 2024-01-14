@@ -56,11 +56,7 @@ const LoginPage = () => {
             >
                 <Link
                     href="/"
-                    className="
-          w-full
-          flex
-          justify-left
-          items-center"
+                    className=" w-full flex justify-left items-center"
                 >
                     <Image
                         src={Logo}
@@ -69,15 +65,13 @@ const LoginPage = () => {
                         height={50}
                     />
                     <span
-                        className="font-semibold
-          dark:text-white text-4xl first-letter:ml-2"
+                        className="font-semibold dark:text-white text-4xl first-letter:ml-2"
                     >
                         cypress.
                     </span>
                 </Link>
                 <FormDescription
-                    className="
-        text-foreground/60"
+                    className="text-foreground/60"
                 >
                     An all-In-One Collaboration and Productivity Platform
                 </FormDescription>
