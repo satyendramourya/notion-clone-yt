@@ -1,7 +1,7 @@
 'use client';
 import { AuthUser } from '@supabase/supabase-js';
 import React, { useState } from 'react';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
 
 import {
@@ -20,7 +20,7 @@ import Loader from '../global/Loader';
 import { createWorkspace } from '@/lib/supabase/queries';
 import { useToast } from '../ui/use-toast';
 import { useRouter } from 'next/navigation';
-// import { useAppState } from '@/lib/providers/state-provider';
+import { useAppState } from '@/lib/providers/state-provider';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { CreateWorkspaceFormSchema } from '@/lib/types';
 import { z } from 'zod';
@@ -36,7 +36,7 @@ const DashboardSetup: React.FC<DashboardSetupProps> = ({
 }) => {
     const { toast } = useToast();
     const router = useRouter();
-    // const { dispatch } = useAppState();
+    const { dispatch } = useAppState();
     const [selectedEmoji, setSelectedEmoji] = useState('💼');
     const supabase = createClientComponentClient();
     const {
